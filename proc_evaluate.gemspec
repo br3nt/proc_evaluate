@@ -8,12 +8,12 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.0'
   spec.summary = 'Allow evaluation of variables, procs, and lambdas with the same level of flexibility.'
   spec.description = <<-DESC
-    Adds an `evaulate` refinement method to Proc and Object instances.
+    Adds an `evaluate` refinement method to Proc and Object instances.
 
-    The goal of this gem is to allow evaluation of variables, procs, and lambdas with the same level of flexibility.
+    The goal of this gem is to allow the evaluation of variables, procs, and lambdas with the same level of flexibility.
 
-    The `evaluate` method has been added to the Object class to simply return the value of the variable.
-    The `evaluate` method is overriden on the Proc class to allow parameters to be passed to lambdas in the same flexible way as procs.
+    The `evaluate` method has been added to the Object class to return the evaluated value of the variable.
+    The `evaluate` method is overridden on the Proc class to allow parameters to be passed to lambdas in the same flexible way as procs.
     This takes into consideration, required/optional/remaining parameters, and required/optional/remaining keyword parameters.
 
     For information on Refinements, see:
