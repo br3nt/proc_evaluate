@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.version = ProcEvaluate::VERSION
   spec.authors = ['Brent Jacobs', 'br3nt']
   spec.homepage = 'https://github.com/br3nt/proc_evaluate'
-  spec.required_ruby_version = '~> 2.0'
+  spec.required_ruby_version = '>= 2.0'
   spec.summary = 'Allow evaluation of variables, procs, and lambdas with the same level of flexibility.'
   spec.description = <<-DESC
     Adds an `evaulate` refinement method to Proc and Object instances.
