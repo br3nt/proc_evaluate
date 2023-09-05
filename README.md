@@ -1,10 +1,16 @@
 # ProcEvaluate
 
-This ruby gem adds an `evaulate` method to Proc and Object instances through the use of [Refinements][1].
+This ruby gem adds an `evaluate` method to Proc and Object instances through the use of [Refinements][1].
 
 The goal of this gem is to allow evaluation of variables, procs, and lambdas with the same level of flexibility.
 
-Example of the differences between procs and lambdas:
+Let's say you want to provide an API or DSL where you want the developer to return a value, such as a string, but you want to give the developer \
+as much flexibility as possible, so that they can either return a string directly, or return a string from a proc or lambda. \
+
+Your API or DSL may even want to pass in some helpful data to the proc or lambda, which the developer can use to derive their return value.  
+
+But you don't want to write code that handles the annoying differences between procs and lambdas:
+
 ```ruby
 proc = proc {|a, b, c| [a, b, c] }
 proc.call() # [nil,  nil, nil]
@@ -13,16 +19,17 @@ lambda = ->(a, b, c) { [a, b, c] }
 lambda.call() # ArgumentError: wrong number of arguments (given 0, expected 3)
 ```
 
-The `evaluate` method has been added to the Object class to simply return the value of the variable.
-The `evaluate` method is overriden on the Proc class to allow parameters to be passed to lambdas in the same flexible way as procs.
+The `evaluate` method has been added to the Object class to return the evaluated value of the variable.
+The `evaluate` method is overridden on the Proc class to allow parameters to be passed to lambdas in the same flexible way as procs.
 This takes into consideration, required/optional/remaining parameters, and required/optional/remaining keyword parameters.
 
 ## Usecase Examples
 
-My gem or library or dsl requires a value from the developer.
-I want to allow the developer the greatest possible flexibility with the value they provide.
+Your gem or library or dsl requires a value from the developer.
+You want to allow the developer the greatest possible flexibility with the value they provide.
 
-A contrived usecase of allowing a develop to define an OpenIdConnect endpoint at config time vs request time:
+A contrived usecase of allowing a developer to define an OpenIdConnect endpoint at config time vs request time:
+
 ```ruby
 # define endpoint at config time
 OpenIdConnectClient.config do |c|
@@ -35,8 +42,12 @@ OpenIdConnectClient.config do |c|
 end
 ```
 
-By using the `evaluate` method within my gem/library/dsl, I do not need to be concerned with whether the developer provides a value, proc, or lambda.
-Likewise, the developer has greater flexibility when using my gem/library/dsl as they have greater options for returning the required value.
+Within your code, you can call `evaluate` on the value passed to `authorize_endpoint`.  E.g: `authorize_endpoint_value.evaluate(request)`
+* In the case where authorize_endpoint is passed a string, the string is returned
+* In the case where authorize_endpoint is passed a Lamda, the lambda is called, and an `OpenIdConnectProvider` is returned
+
+By using the `evaluate` method within your gem/library/dsl, you do not need to be concerned with whether the developer provides a value, proc, or lambda. \
+Likewise, the developer has greater flexibility when using you gem/library/dsl as they have greater options for deriving and returning the required value.
 
 ## Compatibility
 
