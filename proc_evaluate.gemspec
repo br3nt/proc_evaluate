@@ -31,4 +31,7 @@ Gem::Specification.new do |spec|
     'lib/proc_evaluate.rb',
     'lib/proc_evaluate/version.rb'
   ]
+
+  spec.add_development_dependency "rake", ">= 13"
+  spec.add_development_dependency "minitest", ">= 5"
 end
