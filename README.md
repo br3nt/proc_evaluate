@@ -51,7 +51,11 @@ Likewise, the developer has greater flexibility when using you gem/library/dsl a
 
 ## Compatibility
 
-Because this gem makes use of keyword parameters and refinements, it is only compatible with Ruby version 2.0.0 and above (excluding any future release of Ruby 3).
+This gem makes use of keyword parameters and refinements, so it is only compatible with Ruby version 2.0 and above.
+
+As of 2023-11-02 the test are run on every push and pull request against the currently supported Ruby versions: 2.7, 3.0, 3.1, 3.2.  However, as no breaking changes have been introduced, this gem is still compatible with Ruby 2.0+. 
+
+This gem makes use of keyword parameters and refinements, so it is only compatible with Ruby version 2.0 and above.
 
 ## Usage
 
